@@ -13,6 +13,10 @@ body {
   justify-content: center;
   align-items: center;
 }
+.container{
+  border-top: solid 2px white;
+  padding-left: 15px;
+}
 h1 {
   text-align: center;
   -webkit-text-stroke: 2px aqua;
