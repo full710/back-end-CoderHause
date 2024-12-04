@@ -1,0 +1,12 @@
+{
+  "name": "clase-4",
+  "version": "1.0.0",
+  "description": "App de practica clase 4 curso BackEnd",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "tiesto",
+  "license": "ISC"
+}
