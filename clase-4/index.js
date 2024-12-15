@@ -18,3 +18,5 @@ import {temprano,tarde,noche} from "./saludos.js"
 temprano()
 tarde()
 noche()
+
+console.log("Hola");

@@ -1,52 +1,56 @@
 
+
 class ProductManager {
-    static products = []
-    static id = 1;
+    static ultID = 0
+    constructor() {
+        this.products = []
+    }
 
-    static addProduct(product){
-        const nextProductAdd = ProductManager.products.find(p => p.code === product.code)
-        if(!nextProductAdd){
-            product.id = ProductManager.id;
-            ProductManager.products.push(product)
-            ProductManager.id++
+    addProduct(title, description, price, img, code, stock){
+        if(!title || !description || !price || !img || !code || !stock){
+            console.log("Todos los campos son obligatorios");
+            return
         }
-        else{
-            console.log("El producto ya esta agregado");
+        
+        if(this.products.some(item => item.code === code)){
+            console.log("El codigo debe ser unico para cada producto");
+            return
         }
+        
+        const newProduct = {
+            id: ++ProductManager.ultID,
+            title,
+            description,
+            price,
+            img,
+            code,
+            stock
+        }
+
+        this.products.push(newProduct)
     }
-    static getProducts(){
-        return ProductManager.products
+
+    getProducts(){
+        return this.products
     }
-    static getProductsById(id){
-        const product = ProductManager.products.find(p => p.id === id)
-        if(product){
-            console.log(product);     
+
+    getProductsId(id){
+        const product = this.products.find(item => item.id === id)
+
+        if(!product){
+            console.error("Not found");
         }else{
-            console.log("not found");
+            console.log(product);
         }
     }
 }
 
-class Product{
-    constructor(title,desciption,price,thumbnail,code,stock,){
-        this.title = title
-        this.desciption = desciption
-        this.price = price
-        this.thumbnail = thumbnail
-        this.code = code
-        this.stock = stock
-    }
-}
+const manager = new ProductManager()
 
-const product1 = new Product("Termo", "termo para mate",250, "",3214512,4)
-const product2 = new Product("Taza", "Taza para café",150, "", 654321, 10)
-const product3 = new Product("Taza", "Taza para café",150, "", 654321, 10)
+console.log(manager.getProducts());
 
-ProductManager.addProduct(product1)
-ProductManager.addProduct(product2)
-ProductManager.addProduct(product3)
+manager.addProduct("Producto", "descripcion", 249, "Sin imagen", "ab12", 24)
+manager.addProduct("Producto2", "descripcion2", 249, "Sin imagen", "ab13", 245)
+manager.addProduct("Producto3", "descripcion3", 249, "Sin imagen", "ab124", 222)
 
-console.log(ProductManager.getProducts());
-ProductManager.getProductsById(1)
-ProductManager.getProductsById(2)
-ProductManager.getProductsById(3)
+console.log(manager.getProducts());
