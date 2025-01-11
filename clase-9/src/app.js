@@ -1,6 +1,7 @@
 // Clase 9 - Motores de plantillas
 import viewsRouter from "./routes/views.router.js"
 import express from "express";
+import multer from "multer"
 const app = express();
 const PUERTO = 8080;
 
@@ -23,5 +24,19 @@ app.set("views", "./src/views")
 // Rutas
 app.use("/", viewsRouter)
 
+// Practicamos Multer
+// Creamos ruta para cargar una imagen desde postman
+const storage = multer.diskStorage({
+    destination: (req, res, cb) =>{
+        cb(null, "./src/public/img")
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.originalname)
+    }
+})
+const upload = multer({storage})
+app.post("/upload",upload.single("imagen"), (req,res) => {
+    res.send("imagen cargada")
+})
 // Listen
 app.listen(PUERTO, () => console.log(`Escuchando en el ${PUERTO}`));
