@@ -1,0 +1,20 @@
+<h2>Informacion personal</h2>
+
+<p>Mi nombre es: {{usuario.nombre}}</p>
+<p>Mi apellido es: {{usuario.apellido}}</p>
+
+{{#each productos}}
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">{{this.nombre}}</h5>
+      <p class="card-text">{{this.precio}}.</p>
+      <a href="#" class="btn btn-primary">Comprar</a>
+    </div>
+  </div>
+{{/each}}
+
+{{#if usuario.mayorEdad}}
+    <p>Es mayor de edad</p>
+{{else}}
+    <p>Es menor de edad</p>
+{{/if}}
